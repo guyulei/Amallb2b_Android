@@ -2,15 +2,13 @@ package com.amall360.amallb2b_android.net;
 
 import com.amall360.amallb2b_android.bean.ceshi.UserCheckBean;
 
-import java.util.HashMap;
-
-import retrofit2.http.FieldMap;
+import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 import rx.Observable;
 
 //11111111111
-public interface WorkerApiStores {
+public interface BBMApiStores {
 
     String WorkerApiBase = "http://192.168.0.196:8080/api/";
 
@@ -27,10 +25,20 @@ public interface WorkerApiStores {
     @Headers("Content-Type: application/x-www-form-urlencoded; charset=UTF-8;")
     @POST("destackls/addProject.html")
     Observable<List<PublicTwoBean>> setOrderToGcs(@FieldMap HashMap<String, String> map);*/
+
+    /*@GET("/group/{id}/users")
+    List<User> groupList(@Query("sort") String sort);*/
+
+    /*@FormUrlEncoded
+    @POST("/user/edit")
+    User updateUser(@Field("first_name") String first, @Field("last_name") String last);*/
+
     //测试  username  mobile
     @FormUrlEncoded
     @POST("userCheck")
-    Observable<UserCheckBean> setuserCheck(@FieldMap HashMap<String, String> map);
+    Observable<UserCheckBean> setuserCheck(@Field("key") String first);
+
+
 
 
 

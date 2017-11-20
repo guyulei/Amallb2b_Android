@@ -32,7 +32,7 @@ public class AppClient {
     public static Retrofit getWorkerRetrofit() {
         if (mWorkerRetrofit == null) {
             mWorkerRetrofit = new Retrofit.Builder()
-                    .baseUrl(WorkerApiStores.WorkerApiBase)
+                    .baseUrl(BBMApiStores.WorkerApiBase)
                     .addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                     .client(getOkHttpClient())

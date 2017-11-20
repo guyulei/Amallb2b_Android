@@ -2,26 +2,38 @@ package com.amall360.amallb2b_android.ui.activity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
+import android.support.v4.view.ViewPager;
 import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.RadioGroup;
 
-import com.alibaba.fastjson.JSONObject;
 import com.amall360.amallb2b_android.R;
+import com.amall360.amallb2b_android.adapter.MyFragmentPagerAdapter;
 import com.amall360.amallb2b_android.base.BaseActivity;
-import com.amall360.amallb2b_android.bean.ceshi.UserCheckBean;
-import com.amall360.amallb2b_android.net.ApiCallback;
-import com.amall360.amallb2b_android.utils.AesEncryptionUtil;
-import com.amall360.amallb2b_android.utils.LogUtils;
+import com.amall360.amallb2b_android.bean.PageModel;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity {
 
-    @Bind(R.id.textview)
-    TextView mTextview;
+
+    @Bind(R.id.viewpager)
+    ViewPager mViewpager;
+    List<PageModel> pageModels = new ArrayList<>();
+    @Bind(R.id.radioGroup)
+    RadioGroup mRadioGroup;
+
+    {
+        pageModels.add(new PageModel(R.layout.pager_home));
+        pageModels.add(new PageModel(R.layout.pager_classify));
+        pageModels.add(new PageModel(R.layout.pager_warmcircle));
+        pageModels.add(new PageModel(R.layout.pager_shoppingcart));
+        pageModels.add(new PageModel(R.layout.pager_my));
+    }
 
     @Override
     protected int bindLayout() {
@@ -35,50 +47,64 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void initView(Bundle savedInstanceState, View view) {
-
+        mViewpager.setAdapter(new MyFragmentPagerAdapter(getSupportFragmentManager(), pageModels));
+        mViewpager.setCurrentItem(0);
+        mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, @IdRes int checkedId) {
+                switch (checkedId) {
+                    case R.id.radio_home:
+                        mViewpager.setCurrentItem(0, false);
+                        break;
+                    case R.id.radio_classify:
+                        mViewpager.setCurrentItem(1, false);
+                        break;
+                    case R.id.radio_warmcircle:
+                        mViewpager.setCurrentItem(2, false);
+                        break;
+                    case R.id.radio_shoppingcart:
+                        mViewpager.setCurrentItem(3, false);
+                        break;
+                    case R.id.radio_my:
+                        mViewpager.setCurrentItem(4, false);
+                        break;
+                }
+            }
+        });
     }
 
     @Override
     protected void getDataNet() {
 
-        String username = "gu";
+        /*String username = "gu";
         String mobile = "15958121433";
-
-        /*JSONObject jsonObject=JSONObject.fromObject(map);
-        jsonObject.toString();*/
         HashMap<String, String> map1 = new HashMap<>();
-        map1.put("username",username);
-        map1.put("mobile",mobile);
-
-
-        String s1 = JSONObject.toJSONString(map1);
-
-
-        HashMap<String, String> map = new HashMap<>();
-
-        String encrypt = AesEncryptionUtil.encrypt(s1, "625202f9149e061d", "5efd3f6060e20330");
-
-        LogUtils.e("encrypt:"+encrypt);
-        map.put("key",encrypt);
-        getNetData(mWorkerApiStores.setuserCheck(map), new ApiCallback<UserCheckBean>() {
-
-
+        map1.put("username", username);
+        map1.put("mobile", mobile);
+        String encrypt = AesEncryptionUtil.encrypt(JSONObject.toJSONString(map1));
+        LogUtils.e("encrypt:" + encrypt);
+        getNetData(mBBMApiStores.setuserCheck(encrypt), new ApiCallback<UserCheckBean>() {
             @Override
             public void onSuccess(UserCheckBean model) {
-                Toast.makeText(MainActivity.this,model.getStatus_code(),Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, model.getStatus_code(), Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void onFailure(String msg) {
-                Toast.makeText(MainActivity.this,msg,Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, msg, Toast.LENGTH_LONG).show();
             }
-        });
-
-
+        });*/
     }
 
     @Override
     protected void doBusiness(Context context) {
 
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
     }
 }

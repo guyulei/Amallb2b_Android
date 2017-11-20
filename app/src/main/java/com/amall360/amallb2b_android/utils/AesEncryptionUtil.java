@@ -1,5 +1,7 @@
 package com.amall360.amallb2b_android.utils;
 
+import com.amall360.amallb2b_android.net.ApiUrlBase;
+
 import java.io.UnsupportedEncodingException;
 
 import javax.crypto.Cipher;
@@ -88,14 +90,14 @@ public class AesEncryptionUtil {
 
 
     /** 加密(结果为16进制字符串) **/
-    public static String encrypt(String content, String password, String iv) {
+    public static String encrypt(String content) {
         byte[] data = null;
         try {
             data = content.getBytes("UTF-8");
         } catch (Exception e) {
             e.printStackTrace();
         }
-        data = encrypt(data, password, iv);
+        data = encrypt(data, ApiUrlBase.api_key, ApiUrlBase.api_iv);
         String result = byte2hex(data);
         return result;
     }

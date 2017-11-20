@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.amall360.amallb2b_android.net.AppClient;
-import com.amall360.amallb2b_android.net.WorkerApiStores;
+import com.amall360.amallb2b_android.net.BBMApiStores;
 
 import org.simple.eventbus.EventBus;
 
@@ -36,8 +36,8 @@ public abstract class BaseFragment extends Fragment {
     private boolean isInitView = false;
     private boolean isFirstLoad = true;
 
-    protected WorkerApiStores mWorkerApiStores;
-    private CompositeSubscription mCompositeSubscription;
+    protected BBMApiStores          mBBMApiStores;
+    private   CompositeSubscription mCompositeSubscription;
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
@@ -77,7 +77,7 @@ public abstract class BaseFragment extends Fragment {
         ButterKnife.bind(this,contentView);
         // 注册对象
         EventBus.getDefault().register(this);
-        mWorkerApiStores = AppClient.getWorkerRetrofit().create(WorkerApiStores.class);
+        mBBMApiStores = AppClient.getWorkerRetrofit().create(BBMApiStores.class);
         return contentView;
     }
 

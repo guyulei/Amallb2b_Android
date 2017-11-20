@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import com.amall360.amallb2b_android.R;
 import com.amall360.amallb2b_android.net.AppClient;
-import com.amall360.amallb2b_android.net.WorkerApiStores;
+import com.amall360.amallb2b_android.net.BBMApiStores;
 import com.gyf.barlibrary.ImmersionBar;
 
 import org.simple.eventbus.EventBus;
@@ -46,7 +46,7 @@ public abstract class BaseActivity extends AppCompatActivity {
      * 是否沉浸状态栏
      */
     private boolean isSteepStatusBar = true;
-    protected WorkerApiStores       mWorkerApiStores;
+    protected BBMApiStores          mBBMApiStores;
     private   CompositeSubscription mCompositeSubscription;
     private int mcolor = R.color.colorAccent;
 
@@ -54,7 +54,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         try {
-            mWorkerApiStores = AppClient.getWorkerRetrofit().create(WorkerApiStores.class);
+            mBBMApiStores = AppClient.getWorkerRetrofit().create(BBMApiStores.class);
             mActivity = this;
             // 添加Activity到堆栈
             AppManager.getAppManager().addActivity(this);
