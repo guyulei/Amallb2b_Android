@@ -2,6 +2,7 @@ package com.amall360.amallb2b_android.net;
 
 import com.amall360.amallb2b_android.BuildConfig;
 import com.amall360.amallb2b_android.base.Amallb2bApp;
+import com.amall360.amallb2b_android.utils.NetworkUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -39,6 +40,8 @@ public class AppClient {
         }
         return mWorkerRetrofit;
     }
+
+
 
 
 

@@ -1,4 +1,4 @@
-package com.amall360.amallb2b_android.net;
+package com.amall360.amallb2b_android.utils;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -9,6 +9,7 @@ import android.net.wifi.WifiManager;
 import android.telephony.TelephonyManager;
 
 import com.amall360.amallb2b_android.utils.LogUtils;
+import com.amall360.amallb2b_android.utils.ShellUtils;
 import com.amall360.amallb2b_android.utils.Utils;
 
 import java.lang.reflect.Method;

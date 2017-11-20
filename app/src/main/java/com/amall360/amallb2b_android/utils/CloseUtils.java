@@ -1,4 +1,4 @@
-package com.amall360.amallb2b_android.net;
+package com.amall360.amallb2b_android.utils;
 
 import java.io.Closeable;
 import java.io.IOException;

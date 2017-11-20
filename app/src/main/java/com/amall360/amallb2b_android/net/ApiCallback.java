@@ -2,6 +2,8 @@ package com.amall360.amallb2b_android.net;
 
 import android.text.TextUtils;
 
+import com.amall360.amallb2b_android.utils.NetworkUtils;
+
 import retrofit2.adapter.rxjava.HttpException;
 import rx.Subscriber;
 

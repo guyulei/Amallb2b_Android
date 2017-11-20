@@ -1,4 +1,4 @@
-package com.amall360.amallb2b_android;
+package com.amall360.amallb2b_android.ui.activity;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -7,6 +7,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSONObject;
+import com.amall360.amallb2b_android.R;
 import com.amall360.amallb2b_android.base.BaseActivity;
 import com.amall360.amallb2b_android.bean.ceshi.UserCheckBean;
 import com.amall360.amallb2b_android.net.ApiCallback;
@@ -40,12 +41,6 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void getDataNet() {
 
-
-
-    }
-
-    @Override
-    protected void doBusiness(Context context) {
         String username = "gu";
         String mobile = "15958121433";
 
@@ -78,5 +73,12 @@ public class MainActivity extends BaseActivity {
                 Toast.makeText(MainActivity.this,msg,Toast.LENGTH_LONG).show();
             }
         });
+
+
+    }
+
+    @Override
+    protected void doBusiness(Context context) {
+
     }
 }

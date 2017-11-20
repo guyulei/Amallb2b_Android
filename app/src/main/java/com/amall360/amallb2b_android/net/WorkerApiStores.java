@@ -12,16 +12,7 @@ import rx.Observable;
 //11111111111
 public interface WorkerApiStores {
 
-    String WorkerApiBase = "http://192.168.0.196:8080/api/userCheck";
-    //http://192.168.0.196:8080/api/userCheck?key=2D6EDB9EF6AA6D9F57B1275E851369477AC1870E8D5775D5165753568DB5D27B52B87579D88120D7AC99785895AF026D
-
-    //获取验证码  http://192.168.0.150:8080/amall/app/zxjl/getCodes.html?j_username=15958121433
-    /*@GET("zxjl/getCodes.html")
-    Observable<List<publicBean>> getCodes(@QueryMap HashMap<String, String> map);*/
-
-    //获取所有的省份 http://hangzhou.amall360.com/app/zxjl/getAllProvince.html
-    /*@GET("zxjl/getAllProvince.html")
-    Observable<List<AreaBean>> getAllProvince();*/
+    String WorkerApiBase = "http://192.168.0.196:8080/api/";
 
     //融云推送  http://192.168.0.150:8080/amall/app/destackls/shigongStatusList.html?userId=30928&type=11&tk=dd902a4cd3e64db58e41084ea851daae 当前登录的用户id  type 类型（11为施工动态 12为互动消息）
    /* @GET("destackls/shigongStatusList.html?")
@@ -42,7 +33,5 @@ public interface WorkerApiStores {
     Observable<UserCheckBean> setuserCheck(@FieldMap HashMap<String, String> map);
 
 
-    /*@GET("userCheck")
-    Observable<UserCheckBean> setuserCheck(@QueryMap Map<String, String> map);*/
 
 }
