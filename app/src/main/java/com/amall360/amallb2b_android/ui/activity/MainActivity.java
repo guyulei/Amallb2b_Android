@@ -10,13 +10,15 @@ import android.widget.RadioGroup;
 import com.amall360.amallb2b_android.R;
 import com.amall360.amallb2b_android.adapter.MyFragmentPagerAdapter;
 import com.amall360.amallb2b_android.base.BaseActivity;
-import com.amall360.amallb2b_android.ui.fragment.FragmentHome;
+import com.amall360.amallb2b_android.net.ExampleClient;
 import com.amall360.amallb2b_android.ui.fragment.FragmentClassify;
-import com.amall360.amallb2b_android.ui.fragment.FragmentWarmcircle;
-import com.amall360.amallb2b_android.ui.fragment.FragmentShoppingcart;
+import com.amall360.amallb2b_android.ui.fragment.FragmentHome;
 import com.amall360.amallb2b_android.ui.fragment.FragmentMy;
+import com.amall360.amallb2b_android.ui.fragment.FragmentShoppingcart;
+import com.amall360.amallb2b_android.ui.fragment.FragmentWarmcircle;
 import com.amall360.amallb2b_android.view.NoScrollViewPager;
 
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,6 +47,13 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void initView(Bundle savedInstanceState, View view) {
+        //
+        ExampleClient exampleClient = new ExampleClient();
+        try {
+            exampleClient.initSocketClient();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
         mFragments.clear();
         mFragments.add(FragmentHome.newInstance(R.layout.pager_home));
         mFragments.add(FragmentClassify.newInstance(R.layout.pager_classify));
