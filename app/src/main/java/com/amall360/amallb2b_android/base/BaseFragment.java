@@ -1,5 +1,6 @@
 package com.amall360.amallb2b_android.base;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.amall360.amallb2b_android.net.AppClient;
 import com.amall360.amallb2b_android.net.BBMApiStores;
@@ -32,8 +34,8 @@ public abstract class BaseFragment extends Fragment {
      */
     protected View         contentView;
     protected BaseActivity mActivity;
-    private boolean isVisible = false;
-    private boolean isInitView = false;
+    private boolean isVisible   = false;
+    private boolean isInitView  = false;
     private boolean isFirstLoad = true;
 
     protected BBMApiStores          mBBMApiStores;
@@ -74,7 +76,7 @@ public abstract class BaseFragment extends Fragment {
         setRetainInstance(true);
         contentView = inflater.inflate(bindLayout(), null);
         Log.d(TAG, "onCreateView: ");
-        ButterKnife.bind(this,contentView);
+        ButterKnife.bind(this, contentView);
         // 注册对象
         EventBus.getDefault().register(this);
         mBBMApiStores = AppClient.getWorkerRetrofit().create(BBMApiStores.class);
@@ -87,8 +89,7 @@ public abstract class BaseFragment extends Fragment {
         Bundle bundle = getArguments();
         initData(bundle);
         initView(savedInstanceState, contentView);
-        isInitView=true;
-        Log.d(TAG, "onViewCreated: ");
+        isInitView = true;
     }
 
     @Override
@@ -96,21 +97,38 @@ public abstract class BaseFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mActivity = (BaseActivity) getActivity();
         lazyLoad();
-
-        Log.d(TAG, "onActivityCreated: ");
     }
 
     private void lazyLoad() {
-
         if (!isFirstLoad || !isVisible || !isInitView) {
             //不加载数据
             return;
         }
         //加载数据
         doBusiness(mActivity);
-
         isFirstLoad = false;
+    }
+    public void showtoast(String str) {
+        Toast.makeText(mActivity, str, Toast.LENGTH_SHORT).show();
+    }
 
+    public ProgressDialog progressDialog;
+
+    public ProgressDialog showPro(String mess) {
+        progressDialog = new ProgressDialog(mActivity);
+        if (null == mess) {
+            progressDialog.setMessage("加载中");
+        } else {
+            progressDialog.setMessage(mess);
+        }
+        progressDialog.show();
+        return progressDialog;
+    }
+
+    public void dismissPro() {
+        if (progressDialog != null && progressDialog.isShowing()) {
+            progressDialog.dismiss();
+        }
     }
 
 
@@ -168,7 +186,7 @@ public abstract class BaseFragment extends Fragment {
         outState.putBoolean(STATE_SAVE_IS_HIDDEN, isHidden());
     }
 
-    public void getNetDataSub(Observable observable, Subscriber subscriber) {
+    public void getNetData(Observable observable, Subscriber subscriber) {
         if (mCompositeSubscription == null) {
             mCompositeSubscription = new CompositeSubscription();
         }

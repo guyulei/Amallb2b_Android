@@ -20,7 +20,7 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
@@ -42,8 +42,12 @@ dependencies {
     compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
     compile 'io.reactivex:rxjava:1.1.5'
     compile 'io.reactivex:rxandroid:1.2.0'
-    compile 'com.google.code.gson:gson:2.6.2'//Gson 库
-
-
+    compile 'com.google.code.gson:gson:2.6.2'
+    //稳定版
+    compile 'com.android.support:design:26.0.0-alpha1'
+    compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.3'
+    compile 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.3'
+    //一个开源gif控件
+    compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.3'
 
 }

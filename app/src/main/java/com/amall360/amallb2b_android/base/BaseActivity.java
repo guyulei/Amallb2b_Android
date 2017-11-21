@@ -108,9 +108,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
         //获取网络数据
-
         doBusiness(this);
     }
 

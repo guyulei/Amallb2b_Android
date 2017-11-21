@@ -4,9 +4,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.amall360.amallb2b_android.bean.PageModel;
-import com.amall360.amallb2b_android.ui.fragment.PageFragment;
-
 import java.util.List;
 
 /**
@@ -15,21 +12,20 @@ import java.util.List;
 
 public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
 
-    public List<PageModel> mPageModels;
+    public List<Fragment> mFragments;
 
-    public MyFragmentPagerAdapter(FragmentManager fm, List<PageModel> pageModels) {
+    public MyFragmentPagerAdapter(FragmentManager fm, List<Fragment> fragments) {
         super(fm);
-        this.mPageModels = pageModels;
+        this.mFragments = fragments;
     }
 
     @Override
     public Fragment getItem(int position) {
-        PageModel pageModel = mPageModels.get(position);
-        return PageFragment.newInstance(pageModel.LayoutRes);
+        return mFragments.get(position);
     }
 
     @Override
     public int getCount() {
-        return mPageModels.size();
+        return mFragments.size();
     }
 }

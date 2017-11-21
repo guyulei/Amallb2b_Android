@@ -3,14 +3,19 @@ package com.amall360.amallb2b_android.ui.activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
-import android.support.v4.view.ViewPager;
+import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.RadioGroup;
 
 import com.amall360.amallb2b_android.R;
 import com.amall360.amallb2b_android.adapter.MyFragmentPagerAdapter;
 import com.amall360.amallb2b_android.base.BaseActivity;
-import com.amall360.amallb2b_android.bean.PageModel;
+import com.amall360.amallb2b_android.ui.fragment.FragmentHome;
+import com.amall360.amallb2b_android.ui.fragment.FragmentClassify;
+import com.amall360.amallb2b_android.ui.fragment.FragmentWarmcircle;
+import com.amall360.amallb2b_android.ui.fragment.FragmentShoppingcart;
+import com.amall360.amallb2b_android.ui.fragment.FragmentMy;
+import com.amall360.amallb2b_android.view.NoScrollViewPager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,18 +27,11 @@ public class MainActivity extends BaseActivity {
 
 
     @Bind(R.id.viewpager)
-    ViewPager mViewpager;
-    List<PageModel> pageModels = new ArrayList<>();
+    NoScrollViewPager mViewpager;
+
     @Bind(R.id.radioGroup)
     RadioGroup mRadioGroup;
-
-    {
-        pageModels.add(new PageModel(R.layout.pager_home));
-        pageModels.add(new PageModel(R.layout.pager_classify));
-        pageModels.add(new PageModel(R.layout.pager_warmcircle));
-        pageModels.add(new PageModel(R.layout.pager_shoppingcart));
-        pageModels.add(new PageModel(R.layout.pager_my));
-    }
+    List<Fragment> mFragments = new ArrayList<>();
 
     @Override
     protected int bindLayout() {
@@ -47,7 +45,13 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void initView(Bundle savedInstanceState, View view) {
-        mViewpager.setAdapter(new MyFragmentPagerAdapter(getSupportFragmentManager(), pageModels));
+        mFragments.clear();
+        mFragments.add(FragmentHome.newInstance(R.layout.pager_home));
+        mFragments.add(FragmentClassify.newInstance(R.layout.pager_classify));
+        mFragments.add(FragmentWarmcircle.newInstance(R.layout.pager_warmcircle));
+        mFragments.add(FragmentShoppingcart.newInstance(R.layout.pager_shoppingcart));
+        mFragments.add(FragmentMy.newInstance(R.layout.pager_my));
+        mViewpager.setAdapter(new MyFragmentPagerAdapter(getSupportFragmentManager(), mFragments));
         mViewpager.setCurrentItem(0);
         mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -75,25 +79,6 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void getDataNet() {
-
-        /*String username = "gu";
-        String mobile = "15958121433";
-        HashMap<String, String> map1 = new HashMap<>();
-        map1.put("username", username);
-        map1.put("mobile", mobile);
-        String encrypt = AesEncryptionUtil.encrypt(JSONObject.toJSONString(map1));
-        LogUtils.e("encrypt:" + encrypt);
-        getNetData(mBBMApiStores.setuserCheck(encrypt), new ApiCallback<UserCheckBean>() {
-            @Override
-            public void onSuccess(UserCheckBean model) {
-                Toast.makeText(MainActivity.this, model.getStatus_code(), Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void onFailure(String msg) {
-                Toast.makeText(MainActivity.this, msg, Toast.LENGTH_LONG).show();
-            }
-        });*/
     }
 
     @Override
