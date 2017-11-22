@@ -45,7 +45,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void initView(Bundle savedInstanceState, View view) {
-        //
+        //长连接
         ConnManager connManager = new ConnManager(this);
         connManager.connect();
 

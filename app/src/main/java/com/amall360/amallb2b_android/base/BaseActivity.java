@@ -48,7 +48,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     private boolean isSteepStatusBar = true;
     protected BBMApiStores          mBBMApiStores;
     private   CompositeSubscription mCompositeSubscription;
-    private int mcolor = R.color.colorAccent;
+    private int mcolor = R.color.colorffffff;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
