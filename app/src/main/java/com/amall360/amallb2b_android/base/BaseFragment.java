@@ -1,6 +1,5 @@
 package com.amall360.amallb2b_android.base;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,10 +9,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.amall360.amallb2b_android.net.AppClient;
 import com.amall360.amallb2b_android.net.BBMApiStores;
+import com.amall360.amallb2b_android.utils.DialogUtils;
 
 import org.simple.eventbus.EventBus;
 
@@ -27,7 +26,6 @@ import rx.subscriptions.CompositeSubscription;
 public abstract class BaseFragment extends Fragment {
 
     private static final String TAG = "BaseFragment";
-
     private static final String STATE_SAVE_IS_HIDDEN = "STATE_SAVE_IS_HIDDEN";
     /**
      * 当前Activity渲染的视图View
@@ -68,6 +66,7 @@ public abstract class BaseFragment extends Fragment {
             ft.commit();
         }
         Log.d(TAG, "onCreate: ");
+        mActivity = (BaseActivity) getActivity();
     }
 
     @Nullable
@@ -95,7 +94,7 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mActivity = (BaseActivity) getActivity();
+
         lazyLoad();
     }
 
@@ -108,54 +107,18 @@ public abstract class BaseFragment extends Fragment {
         doBusiness(mActivity);
         isFirstLoad = false;
     }
-    public void showtoast(String str) {
-        Toast.makeText(mActivity, str, Toast.LENGTH_SHORT).show();
+
+    public void showDialog(){
+        DialogUtils.init(mActivity).showProgressDialog();
     }
-
-    public ProgressDialog progressDialog;
-
-    public ProgressDialog showPro(String mess) {
-        progressDialog = new ProgressDialog(mActivity);
-        if (null == mess) {
-            progressDialog.setMessage("加载中");
-        } else {
-            progressDialog.setMessage(mess);
-        }
-        progressDialog.show();
-        return progressDialog;
-    }
-
-    public void dismissPro() {
-        if (progressDialog != null && progressDialog.isShowing()) {
-            progressDialog.dismiss();
-        }
+    public void disDialog(){
+        DialogUtils.dissDialog();
     }
 
 
-    /**
-     * 初始化数据
-     *
-     * @param bundle 传递过来的bundle
-     */
     public abstract void initData(Bundle bundle);
-
-    /**
-     * 绑定布局
-     *
-     * @return 布局Id
-     */
     public abstract int bindLayout();
-
-    /**
-     * 初始化view
-     */
     public abstract void initView(Bundle savedInstanceState, final View view);
-
-    /**
-     * 业务操作
-     *
-     * @param context 上下文
-     */
     public abstract void doBusiness(Context context);
 
 

@@ -7,7 +7,7 @@ import android.support.annotation.NonNull;
 public final class Utils {
 
     @SuppressLint("StaticFieldLeak")
-    private static Context context;
+    private static Context mcotext;
 
     private Utils() {
         throw new UnsupportedOperationException("u can't instantiate me...");
@@ -19,7 +19,7 @@ public final class Utils {
      * @param context 上下文
      */
     public static void init(@NonNull Context context) {
-        Utils.context = context.getApplicationContext();
+        Utils.mcotext = context.getApplicationContext();
     }
 
     /**
@@ -28,7 +28,7 @@ public final class Utils {
      * @return ApplicationContext
      */
     public static Context getContext() {
-        if (context != null) return context;
+        if (mcotext != null) return mcotext;
         throw new NullPointerException("u should init first");
     }
 }

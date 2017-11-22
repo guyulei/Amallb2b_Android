@@ -10,7 +10,7 @@ import android.widget.RadioGroup;
 import com.amall360.amallb2b_android.R;
 import com.amall360.amallb2b_android.adapter.MyFragmentPagerAdapter;
 import com.amall360.amallb2b_android.base.BaseActivity;
-import com.amall360.amallb2b_android.net.ExampleClient;
+import com.amall360.amallb2b_android.net.ConnManager;
 import com.amall360.amallb2b_android.ui.fragment.FragmentClassify;
 import com.amall360.amallb2b_android.ui.fragment.FragmentHome;
 import com.amall360.amallb2b_android.ui.fragment.FragmentMy;
@@ -18,7 +18,6 @@ import com.amall360.amallb2b_android.ui.fragment.FragmentShoppingcart;
 import com.amall360.amallb2b_android.ui.fragment.FragmentWarmcircle;
 import com.amall360.amallb2b_android.view.NoScrollViewPager;
 
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,13 +26,12 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity {
 
-
     @Bind(R.id.viewpager)
     NoScrollViewPager mViewpager;
-
     @Bind(R.id.radioGroup)
-    RadioGroup mRadioGroup;
+    RadioGroup        mRadioGroup;
     List<Fragment> mFragments = new ArrayList<>();
+
 
     @Override
     protected int bindLayout() {
@@ -48,12 +46,9 @@ public class MainActivity extends BaseActivity {
     @Override
     public void initView(Bundle savedInstanceState, View view) {
         //
-        ExampleClient exampleClient = new ExampleClient();
-        try {
-            exampleClient.initSocketClient();
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
+        ConnManager connManager = new ConnManager(this);
+        connManager.connect();
+
         mFragments.clear();
         mFragments.add(FragmentHome.newInstance(R.layout.pager_home));
         mFragments.add(FragmentClassify.newInstance(R.layout.pager_classify));
@@ -98,7 +93,12 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
+    }
+
+    @Override
+    public void onBackPressed() {
+        //按返回键返回桌面 手机返回桌面后，点击app图标，app重启
+        moveTaskToBack(true);
     }
 }

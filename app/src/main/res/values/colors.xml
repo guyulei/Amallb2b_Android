@@ -3,4 +3,9 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="colorDialogWindowBg">#2aff5555</color>
+    <color name="colorDialogViewBg">#a5ffffff</color>
+    <color name="colorDialogProgressBarColor">#c67204</color>
+    <color name="colorDialogTextColor">#1cb3ce</color>
 </resources>

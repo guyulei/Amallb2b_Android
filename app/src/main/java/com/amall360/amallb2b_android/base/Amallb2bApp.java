@@ -48,6 +48,7 @@ public class Amallb2bApp extends BaseApplication {
             }
         });
     }
+
     @Override
     public void onCreate() {
         super.onCreate();
