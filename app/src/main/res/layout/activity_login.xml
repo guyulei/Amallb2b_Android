@@ -10,6 +10,7 @@
     tools:context="com.amall360.amallb2b_android.ui.activity.LoginActivity">
 
     <include
+        android:id="@+id/title"
         layout="@layout/public_layout_imagtext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"></include>
@@ -19,13 +20,79 @@
         layout="@layout/public_layout_texteditimge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="45dp"></include>
+        android:layout_marginTop="@dimen/dp45"></include>
+
+    <include
+        layout="@layout/public_layout_line"></include>
 
     <include
         android:id="@+id/password"
         layout="@layout/public_layout_texteditimge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"></include>
+
+    <include
+        layout="@layout/public_layout_line"></include>
+
+    <include
+        android:id="@+id/loginbutten"
+        layout="@layout/public_layout_butten"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp25"></include>
+
+    <TextView
+        android:id="@+id/forgetpass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginTop="@dimen/dp15"
+        android:padding="12dp"
+        android:text="忘记密码"
+        android:textColor="@color/color666670"
+        android:textSize="@dimen/sp15"/>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/dp100"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/dp5"
+            android:paddingTop="@dimen/dp5">
+
+            <TextView
+                android:id="@+id/memberjoin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="会员注册"
+                android:textColor="@color/color666670"
+                android:textSize="@dimen/sp15"/>
+
+            <View
+                android:layout_width="@dimen/dp1"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/dp15"
+                android:layout_marginRight="@dimen/dp15"
+                android:background="@color/colore5e5e5">
+
+            </View>
+
+            <TextView
+                android:id="@+id/sellerjoin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="商户入驻"
+                android:textColor="@color/color666670"
+                android:textSize="@dimen/sp15"/>
+        </LinearLayout>
+    </RelativeLayout>
 
 
 </LinearLayout>

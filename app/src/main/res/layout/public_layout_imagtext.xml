@@ -5,7 +5,7 @@
     android:layout_height="@dimen/dp48">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageLeft"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -14,22 +14,22 @@
         android:src="@mipmap/close"/>
 
     <TextView
-        android:id="@+id/textcenter"
+        android:id="@+id/textCenter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="asdasda"
+        android:text="textCenter"
         android:textColor="@color/color22222c"
         android:textSize="@dimen/dp18"/>
 
     <TextView
-        android:id="@+id/textright"
+        android:id="@+id/textRight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:padding="@dimen/dp12"
-        android:text="asdasd"
+        android:text="textRight"
         android:textColor="@color/color666670"/>
 
 </RelativeLayout>
