@@ -2,7 +2,8 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/dp44">
+    android:layout_height="@dimen/dp44"
+    android:background="@color/colorffffff">
 
     <TextView
         android:id="@+id/textLeft"
@@ -22,8 +23,10 @@
         android:layout_toLeftOf="@+id/imageRight"
         android:layout_toRightOf="@+id/textLeft"
         android:background="@null"
+        android:ellipsize="end"
         android:gravity="center_vertical"
-        android:text="editText"
+        android:maxLines="1"
+        android:paddingLeft="@dimen/dp3"
         android:textColor="@color/color22222c"
         android:textColorHint="@color/color9999a3"
         android:textSize="@dimen/dp16"/>

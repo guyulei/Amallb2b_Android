@@ -2,7 +2,8 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/dp48">
+    android:layout_height="@dimen/dp48"
+    android:background="@color/colorffffff">
 
     <ImageView
         android:id="@+id/imageLeft"
@@ -11,13 +12,15 @@
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:padding="@dimen/dp12"
-        android:src="@mipmap/close"/>
+        android:src="@mipmap/back"/>
 
     <TextView
         android:id="@+id/textCenter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:ellipsize="middle"
+        android:maxLines="1"
         android:text="textCenter"
         android:textColor="@color/color22222c"
         android:textSize="@dimen/dp18"/>
@@ -29,7 +32,6 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:padding="@dimen/dp12"
-        android:text="textRight"
         android:textColor="@color/color666670"/>
 
 </RelativeLayout>

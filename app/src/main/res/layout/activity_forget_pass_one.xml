@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colore5e5e5"
+    android:orientation="vertical"
+    tools:context="com.amall360.amallb2b_android.ui.activity.ForgetPassOneActivity">
+
+    <include
+        android:id="@+id/title"
+        layout="@layout/public_layout_imagtext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></include>
+
+    <include
+        android:id="@+id/telephone"
+        layout="@layout/public_layout_texteditimge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp10"></include>
+
+    <FrameLayout
+        android:layout_width="310dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dp12">
+
+        <SeekBar
+            android:id="@+id/mySeekBar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp43"
+            android:max="100"
+            android:maxHeight="@dimen/dp43"
+            android:minHeight="@dimen/dp43"
+            android:progress="0"
+            android:progressDrawable="@drawable/bg_forgotpassword_seekbar"
+            android:thumb="@drawable/bg_seekbar_thumb"
+            android:thumbOffset="-1dp"/>
+
+        <TextView
+            android:id="@+id/hinttext"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp44"
+            android:gravity="center"
+            android:text="向右滑动验证"
+            android:textColor="@color/color22222c"
+            android:textSize="@dimen/sp15"/>
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dp12">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="遇到问题?您可以"
+            android:textColor="@color/color9999ac"
+            android:textSize="@dimen/sp14"/>
+
+        <TextView
+            android:id="@+id/customservice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="联系客服"
+            android:textColor="@color/color666670"
+            android:textSize="@dimen/sp14"
+            android:textStyle="normal"/>
+    </LinearLayout>
+
+
+</LinearLayout>
