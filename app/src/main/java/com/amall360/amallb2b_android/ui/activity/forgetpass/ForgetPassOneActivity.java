@@ -1,9 +1,11 @@
-package com.amall360.amallb2b_android.ui.activity;
+package com.amall360.amallb2b_android.ui.activity.forgetpass;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.Html;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
@@ -15,16 +17,19 @@ import com.amall360.amallb2b_android.R;
 import com.amall360.amallb2b_android.base.BaseActivity;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 
 public class ForgetPassOneActivity extends BaseActivity implements View.OnClickListener, SeekBar.OnSeekBarChangeListener {
 
     @Bind(R.id.mySeekBar)
-    SeekBar  mMySeekBar;
+    SeekBar   mMySeekBar;
     @Bind(R.id.hinttext)
-    TextView mHinttext;
+    TextView  mHinttext;
     @Bind(R.id.customservice)
-    TextView mCustomservice;
+    TextView  mCustomservice;
+    @Bind(R.id.back)
+    ImageView mBack;
+    @Bind(R.id.title)
+    TextView  mTitle;
     private EditText  mTelephone;
     private ImageView mTelephoneclean;
 
@@ -41,14 +46,13 @@ public class ForgetPassOneActivity extends BaseActivity implements View.OnClickL
     @Override
     public void initView(Bundle savedInstanceState, View view) {
 
-        ImageView back = findViewById(R.id.title).findViewById(R.id.imageLeft);
-        TextView title = findViewById(R.id.title).findViewById(R.id.textCenter);
-        back.setOnClickListener(this);
-        title.setText("忘记密码(1/2)");
+        mBack.setOnClickListener(this);
+        mTitle.setText("忘记密码(1/2)");
         //
         TextView tel = findViewById(R.id.telephone).findViewById(R.id.textLeft);
         tel.setText("手机号");
         mTelephone = findViewById(R.id.telephone).findViewById(R.id.editText);
+        mTelephone.setInputType(InputType.TYPE_CLASS_NUMBER);
         mTelephone.setHint("请输入注册时的手机号");
         mTelephoneclean = findViewById(R.id.telephone).findViewById(R.id.imageRight);
         mTelephoneclean.setImageResource(R.mipmap.clean_nomal);
@@ -92,7 +96,7 @@ public class ForgetPassOneActivity extends BaseActivity implements View.OnClickL
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.imageLeft:
+            case R.id.back:
                 finish();
                 break;
             case R.id.customservice:
@@ -116,13 +120,6 @@ public class ForgetPassOneActivity extends BaseActivity implements View.OnClickL
         } else {
             mTelephoneclean.setImageResource(R.mipmap.clean_press);
         }
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
     }
 
     @Override
@@ -158,6 +155,8 @@ public class ForgetPassOneActivity extends BaseActivity implements View.OnClickL
                 mHinttext.setText("验证通过");
                 seekBar.setProgressDrawable(getResources().getDrawable(R.mipmap.seekbar_progress_true));
                 seekBar.setThumb(getResources().getDrawable(R.mipmap.seekbar_thumb_true));
+                //
+                startActivity(new Intent(mActivity, ForgetPassTwoActivity.class));
             }
         }
     }

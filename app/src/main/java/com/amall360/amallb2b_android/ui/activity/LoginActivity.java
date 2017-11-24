@@ -1,6 +1,7 @@
 package com.amall360.amallb2b_android.ui.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Editable;
@@ -15,19 +16,37 @@ import android.widget.TextView;
 
 import com.amall360.amallb2b_android.R;
 import com.amall360.amallb2b_android.base.BaseActivity;
+import com.amall360.amallb2b_android.ui.activity.forgetpass.ForgetPassOneActivity;
+import com.amall360.amallb2b_android.ui.activity.register.MemberJoinActivity;
+import com.amall360.amallb2b_android.ui.activity.register.SellerJoinActivity;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
-import static com.amall360.amallb2b_android.R.id.editText;
+public class LoginActivity extends BaseActivity {
 
-public class LoginActivity extends BaseActivity implements View.OnClickListener {
+    @Bind(R.id.back)
+    ImageView mBack;
+    @Bind(R.id.title)
+    TextView  mTitle;
+    @Bind(R.id.option)
+    TextView  mLocation;//定位
+    @Bind(R.id.forgetpass)
+    TextView  mForgetpass;
+    @Bind(R.id.memberjoin)
+    TextView  mMemberjoin;
+    @Bind(R.id.sellerjoin)
+    TextView  mSellerjoin;
+    @Bind(R.id.userNameEdit)
+    EditText  mUserNameEdit;
+    @Bind(R.id.userNameClean)
+    ImageView mUserNameClean;
+    @Bind(R.id.passwordEdit)
+    EditText  mPasswordEdit;
+    @Bind(R.id.passwordClean)
+    ImageView mPasswordClean;
 
-    private ImageView mBack;
-    private TextView  mLocation;//定位
-    private EditText  mUsername;
-    private ImageView mUsernameclean;
-    private EditText  mPassword;
-    private ImageView mPasswordshow;
     private Boolean showPassword = true;//密码是否明文显示
     private Button mLoginbutten;
 
@@ -65,103 +84,100 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         ButterKnife.bind(this);
     }
 
-    @Override
-    public void onClick(View view) {
+    @OnClick({R.id.back, R.id.forgetpass, R.id.memberjoin, R.id.sellerjoin})
+    public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.imageLeft:
+            case R.id.back:
                 finish();
+                break;
+            case R.id.forgetpass:
+                startActivity(new Intent(mActivity, ForgetPassOneActivity.class));
+                break;
+            case R.id.memberjoin:
+                startActivity(new Intent(mActivity, MemberJoinActivity.class));
+                break;
+            case R.id.sellerjoin:
+                startActivity(new Intent(mActivity, SellerJoinActivity.class));
                 break;
         }
     }
 
     private void initview() {
         //标题
-        mBack = findViewById(R.id.title).findViewById(R.id.imageLeft);
-        mBack.setOnClickListener(this);
-        TextView title = findViewById(R.id.title).findViewById(R.id.textCenter);
-        title.setText("贝贝猫登录");
-        mLocation = findViewById(R.id.title).findViewById(R.id.textRight);
+        mBack.setImageResource(R.mipmap.close);
+        mTitle.setText("贝贝猫登录");
+        //
         Drawable drawable = getResources().getDrawable(R.mipmap.address);
         drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
         mLocation.setCompoundDrawables(drawable, null, null, null);//设置TextView的drawableleft
         mLocation.setCompoundDrawablePadding(10);//设置图片和text之间的间距
         mLocation.setText("杭州");
         //用户名
-        TextView user = findViewById(R.id.username).findViewById(R.id.textLeft);
-        user.setText("账号");
-        mUsername = findViewById(R.id.username).findViewById(editText);
-        mUsername.setHint("用户名/邮箱/手机号");
-        mUsernameclean = findViewById(R.id.username).findViewById(R.id.imageRight);
-        mUsernameclean.setImageResource(R.mipmap.clean_nomal);
-        mUsername.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        mUserNameEdit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
                 if (b) {
-                    mUsername.setSelection(mUsername.getText().length());
+                    mUserNameEdit.setSelection(mUserNameEdit.getText().length());
                     setusernameclean();
                 }
             }
         });
-        mUsername.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                setusernameclean();
-                setloginbutten(mUsername, mPassword);
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-            }
-        });
-        mUsernameclean.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mUsername.setText(null);
-                needFocusable(mUsername);
-            }
-        });
-        //密码
-        TextView pass = findViewById(R.id.password).findViewById(R.id.textLeft);
-        mPassword = findViewById(R.id.password).findViewById(editText);
-        mPasswordshow = findViewById(R.id.password).findViewById(R.id.imageRight);
-        pass.setText("密码");
-        mPassword.setHint("请输入密码");
-        mPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
-        mPasswordshow.setImageResource(R.mipmap.password_nomal);
-        mPassword.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean b) {
-                if (b) {
-                    mPassword.setSelection(mPassword.getText().length());
-                }
-            }
-        });
-        mPasswordshow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (showPassword) {// 显示密码
-                    mPasswordshow.setImageResource(R.mipmap.password_press);
-                    mPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                    showPassword = !showPassword;
-                } else {// 隐藏密码
-                    mPasswordshow.setImageResource(R.mipmap.password_nomal);
-                    mPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                    showPassword = !showPassword;
-                }
-                needFocusable(mPassword);
-            }
-        });
-        mPassword.addTextChangedListener(new TextWatcher() {
+        mUserNameEdit.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
             }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                setloginbutten(mUsername, mPassword);
+                setusernameclean();
+                setloginbutten(mUserNameEdit, mPasswordEdit, mLoginbutten);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+            }
+        });
+        mUserNameClean.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mUserNameEdit.setText(null);
+                needFocusable(mUserNameEdit);
+            }
+        });
+        //密码
+        //mPasswordEdit.setTransformationMethod(PasswordTransformationMethod.getInstance());
+        mPasswordClean.setImageResource(R.mipmap.password_nomal);
+        mPasswordEdit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if (b) {
+                    mPasswordEdit.setSelection(mPasswordEdit.getText().length());
+                }
+            }
+        });
+        mPasswordClean.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (showPassword) {// 显示密码
+                    mPasswordClean.setImageResource(R.mipmap.password_press);
+                    mPasswordEdit.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    showPassword = !showPassword;
+                } else {// 隐藏密码
+                    mPasswordClean.setImageResource(R.mipmap.password_nomal);
+                    mPasswordEdit.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    showPassword = !showPassword;
+                }
+                needFocusable(mPasswordEdit);
+            }
+        });
+        mPasswordEdit.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                setloginbutten(mUserNameEdit, mPasswordEdit, mLoginbutten);
             }
 
             @Override
@@ -171,19 +187,19 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         });
         //登录按钮
         mLoginbutten = findViewById(R.id.loginbutten).findViewById(R.id.butten);
-        setloginbutten(mUsername, mPassword);
+        setloginbutten(mUserNameEdit, mPasswordEdit, mLoginbutten);
 
     }
 
-    private void setloginbutten(EditText editText, EditText editText1) {
+    private void setloginbutten(EditText editText, EditText editText1, Button button) {
         String s = editText.getText().toString();
         String s1 = editText1.getText().toString();
         if (!s.isEmpty() && !s1.isEmpty()) {
-            mLoginbutten.setEnabled(true);
-            mLoginbutten.setTextColor(getResources().getColor(R.color.colorffffff));
+            button.setEnabled(true);
+            button.setTextColor(getResources().getColor(R.color.colorffffff));
         } else {
-            mLoginbutten.setEnabled(false);
-            mLoginbutten.setTextColor(getResources().getColor(R.color.colorbbbbc5));
+            button.setEnabled(false);
+            button.setTextColor(getResources().getColor(R.color.colorbbbbc5));
         }
     }
 
@@ -195,11 +211,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     }
 
     private void setusernameclean() {
-        String s = mUsername.getText().toString();
+        String s = mUserNameEdit.getText().toString();
         if (s.isEmpty()) {
-            mUsernameclean.setImageResource(R.mipmap.clean_nomal);
+            mUserNameClean.setImageResource(R.mipmap.clean_nomal);
         } else {
-            mUsernameclean.setImageResource(R.mipmap.clean_press);
+            mUserNameClean.setImageResource(R.mipmap.clean_press);
         }
     }
+
+
 }

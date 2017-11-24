@@ -10,14 +10,12 @@
     tools:context="com.amall360.amallb2b_android.ui.activity.LoginActivity">
 
     <include
-        android:id="@+id/title"
-        layout="@layout/public_layout_imagtext"
+        layout="@layout/public_layout_back_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"></include>
 
     <include
-        android:id="@+id/username"
-        layout="@layout/public_layout_texteditimge"
+        layout="@layout/public_layout_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp45"></include>
@@ -26,8 +24,7 @@
         layout="@layout/public_layout_line"></include>
 
     <include
-        android:id="@+id/password"
-        layout="@layout/public_layout_texteditimge"
+        layout="@layout/public_layout_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"></include>
 

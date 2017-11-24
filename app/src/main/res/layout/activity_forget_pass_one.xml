@@ -7,11 +7,10 @@
     android:layout_height="match_parent"
     android:background="@color/colore5e5e5"
     android:orientation="vertical"
-    tools:context="com.amall360.amallb2b_android.ui.activity.ForgetPassOneActivity">
+    tools:context="com.amall360.amallb2b_android.ui.activity.forgetpass.ForgetPassOneActivity">
 
     <include
-        android:id="@+id/title"
-        layout="@layout/public_layout_imagtext"
+        layout="@layout/public_layout_back_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></include>
 

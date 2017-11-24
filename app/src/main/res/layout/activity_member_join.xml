@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorf5f5f5"
+    android:orientation="vertical"
+    tools:context="com.amall360.amallb2b_android.ui.activity.register.MemberJoinActivity">
+
+    <include
+        layout="@layout/public_layout_back_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></include>
+
+    <include
+        layout="@layout/public_layout_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp10"></include>
+
+</LinearLayout>

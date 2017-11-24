@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp44"
+    android:background="@color/colorffffff">
+
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:padding="@dimen/dp12"
+        android:text="账号"
+        android:textColor="@color/color22222c"
+        android:textSize="@dimen/dp16"/>
+
+    <EditText
+        android:id="@+id/userNameEdit"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp44"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/dp95"
+        android:layout_toLeftOf="@+id/userNameClean"
+        android:background="@null"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:hint="用户名/邮箱/手机号"
+        android:maxLines="1"
+        android:textColor="@color/color22222c"
+        android:textColorHint="@color/color9999a3"
+        android:textSize="@dimen/dp16"/>
+
+    <ImageView
+        android:id="@+id/userNameClean"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:padding="@dimen/dp12"
+        android:src="@mipmap/clean_nomal"/>
+
+</RelativeLayout>

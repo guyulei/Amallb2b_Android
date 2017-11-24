@@ -5,13 +5,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colore5e5e5"
+    android:background="@color/colorf5f5f5"
     android:orientation="vertical"
-    tools:context="com.amall360.amallb2b_android.ui.activity.ForgetPassOneActivity">
+    tools:context="com.amall360.amallb2b_android.ui.activity.forgetpass.ForgetPassOneActivity">
 
     <include
-        android:id="@+id/title"
-        layout="@layout/public_layout_imagtext"
+        layout="@layout/public_layout_back_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></include>
 
@@ -20,6 +19,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/dp25"
+        android:drawableLeft="@mipmap/tip"
+        android:drawablePadding="@dimen/dp5"
         android:text="为确保是您本人操作,请完成已下认证"
         android:textColor="@color/color22222c"
         android:textSize="@dimen/sp16"/>
@@ -34,7 +35,7 @@
         android:textSize="@dimen/sp14"/>
 
     <TextView
-        android:id="@+id/tel"
+        android:id="@+id/telTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -43,32 +44,29 @@
         android:textColor="@color/color22222c"
         android:textSize="@dimen/sp19"/>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp44"
+        android:layout_marginTop="@dimen/dp30"
         android:background="@color/colorffffff">
 
         <TextView
-            android:id="@+id/textLeft"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:padding="@dimen/dp12"
             android:text="验证码"
             android:textColor="@color/color22222c"
             android:textSize="@dimen/dp16"/>
 
         <EditText
-            android:id="@+id/editText"
-            android:layout_width="match_parent"
+            android:id="@+id/codeEditText"
+            android:layout_width="0dp"
             android:layout_height="@dimen/dp44"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/imageRight"
-            android:layout_toRightOf="@+id/textLeft"
+            android:layout_weight="1"
             android:background="@null"
             android:ellipsize="end"
-            android:gravity="center_vertical"
             android:hint="短信验证码"
+            android:inputType="number"
             android:maxLines="1"
             android:paddingLeft="@dimen/dp3"
             android:textColor="@color/color22222c"
@@ -76,20 +74,29 @@
             android:textSize="@dimen/dp16"/>
 
         <ImageView
+            android:id="@+id/codeImageView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:src="@mipmap/clean_press"/>
 
+        <View
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:background="@color/colore5e5e5"></View>
 
         <TextView
-            android:id="@+id/imageRight"
+            android:id="@+id/codeTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:padding="@dimen/dp12"
-            android:text="60s后重发"/>
+            android:text="60s后重发"
+            android:textColor="@color/colorbbbbc5"
+            android:textSize="@dimen/sp14"/>
 
-    </RelativeLayout>
+    </LinearLayout>
 
 
     <include
@@ -98,6 +105,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp10"></include>
+
+    <include
+        android:id="@+id/finishbutten"
+        layout="@layout/public_layout_butten"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp25">
+    </include>
 
 
 </LinearLayout>

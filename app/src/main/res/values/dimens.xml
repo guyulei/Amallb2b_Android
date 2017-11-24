@@ -20,4 +20,5 @@
     <dimen name="sp16">16sp</dimen>
     <dimen name="sp19">19sp</dimen>
     <dimen name="dp30">30dp</dimen>
+    <dimen name="dp95">95dp</dimen>
 </resources>
