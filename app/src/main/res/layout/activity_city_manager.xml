@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorf5f5f5"
+    android:orientation="vertical"
+    tools:context="com.amall360.amallb2b_android.ui.activity.register.MemberJoinActivity">
+
+    <include
+        layout="@layout/public_layout_back_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></include>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/dp12">
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp34"
+            android:layout_weight="1"
+            android:background="@color/colorffffff"
+            android:drawablePadding="@dimen/dp12"
+            android:hint="搜索"
+            android:paddingLeft="@dimen/dp12"
+            android:paddingRight="@dimen/dp12"
+            android:textColor="@color/color666670"
+            android:textSize="@dimen/sp13"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp12"
+            android:src="@mipmap/clean_press"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/location_city"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp44"
+        android:background="@color/colorffffff"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/dp12"
+        android:text="定位城市:"
+        android:textColor="@color/color22222c"
+        android:textSize="@dimen/sp16"/>
+
+    <include
+        layout="@layout/public_layout_line_match"></include>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp44"
+        android:background="@color/colorffffff"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/dp12"
+        android:text="已开通10个省份,共60个分站(市)"
+        android:textColor="@color/color22222c"
+        android:textSize="@dimen/sp16"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp44"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/dp12"
+            android:text="省份:"
+            android:textColor="@color/color22222c"
+            android:textSize="@dimen/sp16"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/province"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp44"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/dp12"
+            android:textColor="@color/color22222c"
+            android:textSize="@dimen/sp16"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorffffff"
+        android:padding="@dimen/dp12">
+
+    </android.support.v7.widget.RecyclerView>
+
+</LinearLayout>
+
+
+
+

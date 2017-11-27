@@ -32,13 +32,16 @@
         <activity android:name=".ui.activity.register.MemberJoinThreeActivity">
         </activity>
         <activity android:name=".ui.activity.register.SellerJoinTwoActivity">
+
+        </activity>
+        <activity android:name=".ui.activity.register.SellerJoinThreeActivity">
+        </activity>
+        <activity android:name=".ui.activity.citymanager.CityManagerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
-        </activity>
-        <activity android:name=".ui.activity.register.SellerJoinThreeActivity">
         </activity>
     </application>
 

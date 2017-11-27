@@ -47,4 +47,5 @@ dependencies {
     compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.3'
     compile 'com.github.maning0303:MNProgressHUD:V1.0.2'
     testCompile 'junit:junit:4.12'
+    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
 }
