@@ -18,7 +18,7 @@ import com.amall360.amallb2b_android.base.BaseActivity;
 
 import butterknife.Bind;
 
-public class ForgetPassOneActivity extends BaseActivity implements View.OnClickListener, SeekBar.OnSeekBarChangeListener {
+public class ForgetPassOneActivity extends BaseActivity implements View.OnClickListener, SeekBar.OnSeekBarChangeListener, TextWatcher {
 
     @Bind(R.id.mySeekBar)
     SeekBar   mMySeekBar;
@@ -56,20 +56,7 @@ public class ForgetPassOneActivity extends BaseActivity implements View.OnClickL
         mTelephone.setHint("请输入注册时的手机号");
         mTelephoneclean = findViewById(R.id.telephone).findViewById(R.id.imageRight);
         mTelephoneclean.setImageResource(R.mipmap.clean_nomal);
-        mTelephone.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                settelephoneclean();
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-            }
-        });
+        mTelephone.addTextChangedListener(this);
         mTelephoneclean.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -159,5 +146,21 @@ public class ForgetPassOneActivity extends BaseActivity implements View.OnClickL
                 startActivity(new Intent(mActivity, ForgetPassTwoActivity.class));
             }
         }
+    }
+
+
+    @Override
+    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+        settelephoneclean();
+    }
+
+    @Override
+    public void afterTextChanged(Editable editable) {
+
     }
 }

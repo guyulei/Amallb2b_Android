@@ -24,7 +24,7 @@ import java.util.TimerTask;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class ForgetPassTwoActivity extends BaseActivity implements View.OnClickListener {
+public class ForgetPassTwoActivity extends BaseActivity implements View.OnClickListener, TextWatcher {
 
     @Bind(R.id.codeEditText)
     EditText  mCodeEditText;
@@ -79,23 +79,7 @@ public class ForgetPassTwoActivity extends BaseActivity implements View.OnClickL
         mBack.setOnClickListener(this);
         mTitle.setText("忘记密码(2/2)");
         //
-        mCodeEditText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                setloginbutten(mCodeEditText, mNewPassText, mFinishbutten);
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
+        mCodeEditText.addTextChangedListener(this);
         mCodeTextView.setOnClickListener(this);//重发验证码
         //
         TextView newpass = findViewById(R.id.newpassword).findViewById(R.id.textLeft);
@@ -112,22 +96,7 @@ public class ForgetPassTwoActivity extends BaseActivity implements View.OnClickL
             }
         });
 
-        mNewPassText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                setloginbutten(mCodeEditText, mNewPassText, mFinishbutten);
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
+        mNewPassText.addTextChangedListener(this);
         final ImageView newPassshow = findViewById(R.id.newpassword).findViewById(R.id.imageRight);
         newPassshow.setImageResource(R.mipmap.password_nomal);
         newPassshow.setOnClickListener(new View.OnClickListener() {
@@ -252,5 +221,20 @@ public class ForgetPassTwoActivity extends BaseActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+        setloginbutten(mCodeEditText, mNewPassText, mFinishbutten);
+    }
+
+    @Override
+    public void afterTextChanged(Editable editable) {
+
     }
 }

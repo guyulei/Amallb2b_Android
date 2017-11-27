@@ -20,4 +20,40 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp10"></include>
 
+    <include
+        layout="@layout/public_layout_line_match"></include>
+
+    <include
+        layout="@layout/public_layout_setpassword"></include>
+
+    <include
+        layout="@layout/public_layout_butten"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp25"></include>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp15"
+        android:paddingLeft="@dimen/dp12">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="已同意并阅读"
+            android:textColor="@color/color9999a3"
+            android:textSize="@dimen/sp14"/>
+
+        <TextView
+            android:id="@+id/agreement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="《贝贝猫用户注册协议》"
+            android:textColor="@color/color22222c"
+            android:textSize="@dimen/sp14"/>
+
+    </LinearLayout>
+
+
 </LinearLayout>

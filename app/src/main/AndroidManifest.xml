@@ -18,11 +18,6 @@
         <activity android:name=".ui.activity.MainActivity">
         </activity>
         <activity android:name=".ui.activity.LoginActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
         <activity android:name=".ui.activity.forgetpass.ForgetPassOneActivity">
         </activity>
@@ -31,6 +26,19 @@
         <activity android:name=".ui.activity.register.MemberJoinActivity">
         </activity>
         <activity android:name=".ui.activity.register.SellerJoinActivity">
+        </activity>
+        <activity android:name=".ui.activity.register.MemberJoinTwoActivity">
+        </activity>
+        <activity android:name=".ui.activity.register.MemberJoinThreeActivity">
+        </activity>
+        <activity android:name=".ui.activity.register.SellerJoinTwoActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.activity.register.SellerJoinThreeActivity">
         </activity>
     </application>
 

@@ -26,6 +26,7 @@
         android:ellipsize="end"
         android:gravity="center_vertical"
         android:hint="用户名/邮箱/手机号"
+        android:inputType="text"
         android:maxLines="1"
         android:textColor="@color/color22222c"
         android:textColorHint="@color/color9999a3"

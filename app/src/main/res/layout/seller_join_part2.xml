@@ -8,39 +8,47 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp44">
+        android:layout_height="@dimen/dp44"
+        android:background="@color/colorffffff">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:padding="@dimen/dp12"
-            android:text="设定密码"
+            android:text="联系人"
             android:textColor="@color/color22222c"
             android:textSize="@dimen/dp16"/>
 
         <EditText
-
-            android:id="@+id/setpassword"
+            android:id="@+id/contacts"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp44"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/dp95"
+            android:layout_toLeftOf="@+id/contactsClean"
             android:background="@null"
             android:ellipsize="end"
             android:gravity="center_vertical"
-            android:hint="请输入新密码"
-            android:inputType="textPassword"
+            android:hint="请输入联系人"
             android:maxLines="1"
             android:textColor="@color/color22222c"
             android:textColorHint="@color/color9999a3"
             android:textSize="@dimen/dp16"/>
+
+        <ImageView
+            android:id="@+id/contactsClean"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:padding="@dimen/dp12"
+            android:src="@mipmap/clean_nomal"/>
+
     </RelativeLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp1"
-        android:background="@color/colore5e5e5"></View>
+    <include
+        layout="@layout/public_layout_line_match"></include>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -52,25 +60,35 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:padding="@dimen/dp12"
-            android:text="确认密码"
+            android:text="公司名称"
             android:textColor="@color/color22222c"
             android:textSize="@dimen/dp16"/>
 
         <EditText
-            android:id="@+id/setpasswordagain"
+            android:id="@+id/companyname"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp44"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/dp95"
+            android:layout_toLeftOf="@+id/companynameClean"
             android:background="@null"
             android:ellipsize="end"
             android:gravity="center_vertical"
-            android:hint="请再次输入密码"
-            android:inputType="textPassword"
+            android:hint="请输入公司名称"
             android:maxLines="1"
             android:textColor="@color/color22222c"
             android:textColorHint="@color/color9999a3"
             android:textSize="@dimen/dp16"/>
 
+        <ImageView
+            android:id="@+id/companynameClean"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:padding="@dimen/dp12"
+            android:src="@mipmap/clean_nomal"/>
+
     </RelativeLayout>
+
 </LinearLayout>
