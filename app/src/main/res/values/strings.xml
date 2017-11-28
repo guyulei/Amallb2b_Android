@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Amallb2b_Android</string>
+    <string name="title_item_list">Items</string>
+    <string name="title_item_detail">Item Detail</string>
+
+
+    <string name="login_pass_word">验证码已发送至手机178****1111,请注意查收。如该手机号一直没有接收到验证码,请联系客服。
+
+    </string>
 </resources>

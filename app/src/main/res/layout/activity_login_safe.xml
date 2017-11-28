@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.amall360.amallb2b_android.ui.activity.setting.LoginSafeActivity">
+
+    <include
+        layout="@layout/public_layout_back_title"></include>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp44"
+        android:layout_marginTop="@dimen/dp10"
+        android:background="@color/colorffffff"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="@dimen/dp12"
+            android:text="修改登录手机"
+            android:textColor="@color/color22222c"
+            android:textSize="@dimen/sp16"/>
+
+        <TextView
+            android:id="@+id/loginTelephone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/dp10"
+            android:drawableRight="@mipmap/tip_right"
+            android:padding="@dimen/dp12"
+            android:text="15958121733"
+            android:textColor="@color/color9999a3"/>
+    </LinearLayout>
+
+    <include
+        layout="@layout/public_layout_line_match"></include>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp44"
+        android:background="@color/colorffffff"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="@dimen/dp12"
+            android:text="修改登录密码"
+            android:textColor="@color/color22222c"
+            android:textSize="@dimen/sp16"/>
+
+        <ImageView
+            android:id="@+id/loginPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp12"
+            android:src="@mipmap/tip_right"/>
+    </LinearLayout>
+</LinearLayout>

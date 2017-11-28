@@ -1,21 +1,29 @@
 package com.amall360.amallb2b_android.ui.activity.citymanager;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.alibaba.fastjson.JSONObject;
 import com.amall360.amallb2b_android.R;
 import com.amall360.amallb2b_android.adapter.DomainListAdapter;
 import com.amall360.amallb2b_android.base.BaseActivity;
 import com.amall360.amallb2b_android.bean.DomainListBean;
+import com.amall360.amallb2b_android.constant.Constant;
 import com.amall360.amallb2b_android.net.ApiCallback;
+import com.amall360.amallb2b_android.ui.activity.MainActivity;
 import com.amall360.amallb2b_android.utils.AesEncryptionUtil;
+import com.amall360.amallb2b_android.utils.DialogUtil;
 import com.amall360.amallb2b_android.utils.LogUtils;
+import com.amall360.amallb2b_android.utils.SPUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 
 import java.util.ArrayList;
@@ -32,8 +40,6 @@ public class CityManagerActivity extends BaseActivity {
     ImageView    mBack;
     @Bind(R.id.title)
     TextView     mTitle;
-    @Bind(R.id.option)
-    TextView     mOption;
     @Bind(R.id.location_city)
     TextView     mLocationCity;
     @Bind(R.id.province)
@@ -45,9 +51,8 @@ public class CityManagerActivity extends BaseActivity {
     private GridLayoutManager                      mManagerLayout;
     private DomainListAdapter                      mDomainListAdapter;
     private HashMap<String, String>                mMap;
-    private boolean isChooseProvince = true;
-    private boolean isTwoClick       = false;//是否选择了城市 也就是 分站
     int num = 0;
+    private String cityname = "";
 
 
     @Override
@@ -76,19 +81,24 @@ public class CityManagerActivity extends BaseActivity {
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 DomainListBean.DataBean.ListBean item = (DomainListBean.DataBean.ListBean) adapter.getItem(position);
                 num++;
-                showtoast(num + "");
-                if (!isTwoClick) {//
+                if (num == 1) {//点击了省
                     String id = item.getId();//第一次点击 省的id
-                    showtoast(id);
-                    mProvince.setText(item.getName());//省的名字
+                    cityname = item.getName();
+                    mProvince.setText(cityname);//省的名字
                     mMap.put("type", "1");
                     mMap.put("provinceid", id);
-                }
-                //
-                if (isChooseProvince) {
-                    getDataNet();
-                    isChooseProvince = false;
-                    isTwoClick = true;
+                    getDataNet();//获取市
+                } else if (num == 2) {//点击了市
+                    String id = item.getId();//第一次点击 省的id
+                    showtoast("num=" + num + "---id:" + id);
+                    cityname = cityname + "-" + item.getName();
+                    mProvince.setText(cityname);//省的名字
+                    //缓存 分站id
+                    SPUtils.getInstance().put(Constant.city_id, id);
+                    SPUtils.getInstance().put(Constant.city_name, item.getName());
+                    // TODO: 2017/11/28
+                    startActivity(new Intent(mActivity, MainActivity.class));
+                    finish();
                 }
             }
         });
@@ -104,6 +114,7 @@ public class CityManagerActivity extends BaseActivity {
         /**type : 0 ;               -int/string （0-获取省份  1-获取城市）
          provinceid : 11;    -int/string （省份id，type=1时需传参）*/
 
+        showDialog(null);
         String key = AesEncryptionUtil.encrypt(JSONObject.toJSONString(mMap));
         LogUtils.e("getdomainList-key:" + key);
         getNetData(mBBMApiStores.getdomainList(key), new ApiCallback<DomainListBean>() {
@@ -116,12 +127,14 @@ public class CityManagerActivity extends BaseActivity {
                     mList.clear();
                     mList.addAll(mData.getList());
                     mDomainListAdapter.notifyDataSetChanged();
+                    disDialog();
                 }
             }
 
             @Override
             public void onFailure(String msg) {
                 showtoast(msg);
+                disDialog();
             }
         });
     }
@@ -138,18 +151,43 @@ public class CityManagerActivity extends BaseActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.back, R.id.option})
+    @OnClick({R.id.back, R.id.location_city})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.back:
-
                 if (num < 2) {
-                    showtoast("您没有选择城市分站");
+                    MaterialDialog.SingleButtonCallback callback = new MaterialDialog.SingleButtonCallback() {
+                        @Override
+                        public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                            //确定
+                            dialog.dismiss();
+                        }
+                    };
+                    MaterialDialog.SingleButtonCallback negativecallback = new MaterialDialog.SingleButtonCallback() {
+                        @Override
+                        public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                            //取消
+                            dialog.dismiss();
+                            finish();
+                        }
+                    };
+                    DialogUtil.materialDialog(mActivity, "提示", "请选择城市分站", callback, negativecallback);
                 }
-
                 break;
-            case R.id.option:
-                // TODO: 2017/11/27
+            case R.id.location_city:
+                if (mData != null) {
+                    DomainListBean.DataBean.SiteBean site = mData.getSite();
+                    String id = site.getId();
+                    String city = site.getCity();
+                    //缓存 分站id
+                    SPUtils.getInstance().put(Constant.city_id, id);
+                    SPUtils.getInstance().put(Constant.city_name, city);
+                    // TODO: 2017/11/28
+                    startActivity(new Intent(mActivity, MainActivity.class));
+                    finish();
+                }else {
+                    showtoast("111");
+                }
                 break;
         }
     }

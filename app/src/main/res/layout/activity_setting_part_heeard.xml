@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp74"
+    android:background="@color/colorffffff"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    tools:context="com.amall360.amallb2b_android.ui.activity.setting.SettingActivity">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp12"
+        android:src="@mipmap/heard"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="头像"
+        android:textColor="@color/color22222c"
+        android:textSize="@dimen/sp16"/>
+
+    <ImageView
+        android:id="@+id/heardimage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp12"
+        android:src="@mipmap/heardimage"/>
+</LinearLayout>

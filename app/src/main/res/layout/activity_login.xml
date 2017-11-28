@@ -32,7 +32,6 @@
         layout="@layout/public_layout_line"></include>
 
     <include
-        android:id="@+id/loginbutten"
         layout="@layout/public_layout_butten"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

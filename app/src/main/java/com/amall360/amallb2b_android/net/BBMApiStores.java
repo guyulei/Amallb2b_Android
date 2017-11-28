@@ -1,6 +1,7 @@
 package com.amall360.amallb2b_android.net;
 
 import com.amall360.amallb2b_android.bean.DomainListBean;
+import com.amall360.amallb2b_android.bean.LoginBean;
 import com.amall360.amallb2b_android.bean.ceshi.UserCheckBean;
 
 import retrofit2.http.Field;
@@ -46,6 +47,11 @@ public interface BBMApiStores {
     provinceid : 11;    -int/string （省份id，type=1时需传参）*/
     @GET("domainList")
     Observable<DomainListBean> getdomainList(@Query("key") String key);
+    //
+    //登录/api/login
+    @FormUrlEncoded
+    @POST("login")
+    Observable<LoginBean> getLogin(@Field("key") String key);
 
 
 }

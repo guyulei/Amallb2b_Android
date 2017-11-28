@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 
 import com.amall360.amallb2b_android.net.AppClient;
 import com.amall360.amallb2b_android.net.BBMApiStores;
-import com.amall360.amallb2b_android.utils.DialogUtils;
+import com.maning.mndialoglibrary.MProgressDialog;
 
 import org.simple.eventbus.EventBus;
 
@@ -25,7 +25,7 @@ import rx.subscriptions.CompositeSubscription;
 
 public abstract class BaseFragment extends Fragment {
 
-    private static final String TAG = "BaseFragment";
+    private static final String TAG                  = "BaseFragment";
     private static final String STATE_SAVE_IS_HIDDEN = "STATE_SAVE_IS_HIDDEN";
     /**
      * 当前Activity渲染的视图View
@@ -108,17 +108,28 @@ public abstract class BaseFragment extends Fragment {
         isFirstLoad = false;
     }
 
-    public void showDialog(){
-        DialogUtils.init(mActivity).showProgressDialog();
+    MProgressDialog mProgressDialog;
+
+    public void showDialog(String msg) {
+        if (!mActivity.isFinishing()) {
+            mProgressDialog = new MProgressDialog.Builder(mActivity).build();
+            mProgressDialog.show(msg);
+        }
     }
-    public void disDialog(){
-        DialogUtils.dissDialog();
+
+    public void disDialog() {
+        if (mProgressDialog != null) {
+            mProgressDialog.dismiss();
+        }
     }
 
 
     public abstract void initData(Bundle bundle);
+
     public abstract int bindLayout();
+
     public abstract void initView(Bundle savedInstanceState, final View view);
+
     public abstract void doBusiness(Context context);
 
 

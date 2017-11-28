@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorf5f5f5"
+    android:orientation="vertical"
+    tools:context="com.amall360.amallb2b_android.ui.activity.setting.SettingActivity">
+
+    <include
+        layout="@layout/public_layout_back_title"></include>
+
+    <include
+        layout="@layout/public_layout_line_match"></include>
+
+    <include
+        layout="@layout/activity_setting_part_heeard"></include>
+
+    <include
+        layout="@layout/activity_setting_part_body"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp10"></include>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/exit"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp44"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorffffff"
+            android:gravity="center"
+            android:text="退出登录"
+            android:textColor="@color/colorf23030"
+            android:textSize="@dimen/sp16"/>
+    </RelativeLayout>
+</LinearLayout>

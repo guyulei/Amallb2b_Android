@@ -23,7 +23,7 @@ public class DialogUtils {
     private static DialogUtils             dialogUtils;
     private static Context                 mContext;
     private static MProgressDialog.Builder sBuilder;
-    private MStatusDialog mMStatusDialog;
+    private        MStatusDialog           mMStatusDialog;
 
     private Timer     timer;
     private TimerTask task;
@@ -90,7 +90,7 @@ public class DialogUtils {
         }
     }
 
-    public static void dissDialog() {
+    public void dissDialog() {
         if (mMProgressDialog != null) {
             mMProgressDialog.dismiss();
         }

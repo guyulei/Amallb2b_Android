@@ -1,6 +1,5 @@
 package com.amall360.amallb2b_android.base;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -16,6 +15,7 @@ import com.amall360.amallb2b_android.R;
 import com.amall360.amallb2b_android.net.AppClient;
 import com.amall360.amallb2b_android.net.BBMApiStores;
 import com.gyf.barlibrary.ImmersionBar;
+import com.maning.mndialoglibrary.MProgressDialog;
 
 import org.simple.eventbus.EventBus;
 
@@ -117,22 +117,18 @@ public abstract class BaseActivity extends AppCompatActivity {
         Toast.makeText(mActivity, str, Toast.LENGTH_SHORT).show();
     }
 
-    public ProgressDialog progressDialog;
+    MProgressDialog mProgressDialog;
 
-    public ProgressDialog showPro(String mess) {
-        progressDialog = new ProgressDialog(this);
-        if (null == mess) {
-            progressDialog.setMessage("加载中");
-        } else {
-            progressDialog.setMessage(mess);
+    public void showDialog(String msg) {
+        if (!mActivity.isFinishing()) {
+            mProgressDialog = new MProgressDialog.Builder(mActivity).build();
+            mProgressDialog.show(msg);
         }
-        progressDialog.show();
-        return progressDialog;
     }
 
-    public void dismissPro() {
-        if (progressDialog != null && progressDialog.isShowing()) {
-            progressDialog.dismiss();
+    public void disDialog() {
+        if (mProgressDialog != null) {
+            mProgressDialog.dismiss();
         }
     }
 

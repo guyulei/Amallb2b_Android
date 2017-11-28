@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.amall360.amallb2b_android.ui.activity.setting.UpdateLoginPassActivity">
+
+    <include
+        layout="@layout/public_layout_back_title"></include>
+
+    <include
+        layout="@layout/public_layout_line_match"></include>
+
+    <TextView
+        android:id="@+id/showTeleInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorffffff"
+        android:padding="@dimen/dp12"
+        android:text="@string/login_pass_word"
+        android:textColor="@color/color9999a3"
+        android:textSize="@dimen/sp14"/>
+
+    <include
+        layout="@layout/public_layout_line_match"></include>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp44"
+        android:layout_marginTop="@dimen/dp10"
+        android:background="@color/colorffffff">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp12"
+            android:text="验证码"
+            android:textColor="@color/color22222c"
+            android:textSize="@dimen/dp16"/>
+
+        <EditText
+            android:id="@+id/codeEditText"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp44"
+            android:layout_weight="1"
+            android:background="@null"
+            android:ellipsize="end"
+            android:hint="短信验证码"
+            android:inputType="number"
+            android:maxLines="1"
+            android:paddingLeft="@dimen/dp3"
+            android:textColor="@color/color22222c"
+            android:textColorHint="@color/color9999a3"
+            android:textSize="@dimen/dp16"/>
+
+        <ImageView
+            android:id="@+id/codeImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:src="@mipmap/clean_press"/>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:background="@color/colore5e5e5"></View>
+
+        <TextView
+            android:id="@+id/codeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:padding="@dimen/dp12"
+            android:text="60s后重发"
+            android:textColor="@color/colorbbbbc5"
+            android:textSize="@dimen/sp14"/>
+
+    </LinearLayout>
+
+    <include
+        layout="@layout/public_layout_line_match"></include>
+
+    <include
+        layout="@layout/public_layout_butten"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp25"></include>
+</LinearLayout>
+

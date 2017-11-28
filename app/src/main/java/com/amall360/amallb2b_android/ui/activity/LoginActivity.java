@@ -14,17 +14,25 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONObject;
 import com.amall360.amallb2b_android.R;
 import com.amall360.amallb2b_android.base.BaseActivity;
+import com.amall360.amallb2b_android.bean.LoginBean;
+import com.amall360.amallb2b_android.net.ApiCallback;
+import com.amall360.amallb2b_android.ui.activity.citymanager.CityManagerActivity;
 import com.amall360.amallb2b_android.ui.activity.forgetpass.ForgetPassOneActivity;
 import com.amall360.amallb2b_android.ui.activity.register.MemberJoinActivity;
 import com.amall360.amallb2b_android.ui.activity.register.SellerJoinActivity;
+import com.amall360.amallb2b_android.utils.AesEncryptionUtil;
+import com.amall360.amallb2b_android.utils.LogUtils;
+
+import java.util.HashMap;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class LoginActivity extends BaseActivity {
+public class LoginActivity extends BaseActivity implements TextWatcher {
 
     @Bind(R.id.back)
     ImageView mBack;
@@ -46,9 +54,10 @@ public class LoginActivity extends BaseActivity {
     EditText  mPasswordEdit;
     @Bind(R.id.passwordClean)
     ImageView mPasswordClean;
+    @Bind(R.id.butten)
+    Button    mButten;
 
     private Boolean showPassword = true;//密码是否明文显示
-    private Button mLoginbutten;
 
     @Override
     protected int bindLayout() {
@@ -84,7 +93,7 @@ public class LoginActivity extends BaseActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.back, R.id.forgetpass, R.id.memberjoin, R.id.sellerjoin})
+    @OnClick({R.id.back, R.id.forgetpass, R.id.memberjoin, R.id.sellerjoin, R.id.option})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.back:
@@ -99,6 +108,9 @@ public class LoginActivity extends BaseActivity {
             case R.id.sellerjoin:
                 startActivity(new Intent(mActivity, SellerJoinActivity.class));
                 break;
+            case R.id.option:
+                startActivity(new Intent(mActivity, CityManagerActivity.class));
+                break;
         }
     }
 
@@ -111,7 +123,7 @@ public class LoginActivity extends BaseActivity {
         drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
         mLocation.setCompoundDrawables(drawable, null, null, null);//设置TextView的drawableleft
         mLocation.setCompoundDrawablePadding(10);//设置图片和text之间的间距
-        mLocation.setText("杭州");
+        mLocation.setText("城市分站");
         //用户名
         mUserNameEdit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -122,21 +134,7 @@ public class LoginActivity extends BaseActivity {
                 }
             }
         });
-        mUserNameEdit.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                setusernameclean();
-                setloginbutten(mUserNameEdit, mPasswordEdit, mLoginbutten);
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-            }
-        });
+        mUserNameEdit.addTextChangedListener(this);
         mUserNameClean.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -145,7 +143,6 @@ public class LoginActivity extends BaseActivity {
             }
         });
         //密码
-        //mPasswordEdit.setTransformationMethod(PasswordTransformationMethod.getInstance());
         mPasswordClean.setImageResource(R.mipmap.password_nomal);
         mPasswordEdit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -158,37 +155,26 @@ public class LoginActivity extends BaseActivity {
         mPasswordClean.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (showPassword) {// 显示密码
-                    mPasswordClean.setImageResource(R.mipmap.password_press);
-                    mPasswordEdit.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                    showPassword = !showPassword;
-                } else {// 隐藏密码
-                    mPasswordClean.setImageResource(R.mipmap.password_nomal);
-                    mPasswordEdit.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                    showPassword = !showPassword;
-                }
-                needFocusable(mPasswordEdit);
+                setPasswordIsClean();
             }
         });
-        mPasswordEdit.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                setloginbutten(mUserNameEdit, mPasswordEdit, mLoginbutten);
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
+        mPasswordEdit.addTextChangedListener(this);
         //登录按钮
-        mLoginbutten = findViewById(R.id.loginbutten).findViewById(R.id.butten);
-        setloginbutten(mUserNameEdit, mPasswordEdit, mLoginbutten);
+        setloginbutten(mUserNameEdit, mPasswordEdit, mButten);
 
+    }
+
+    private void setPasswordIsClean() {
+        if (showPassword) {// 显示密码
+            mPasswordClean.setImageResource(R.mipmap.password_press);
+            mPasswordEdit.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            showPassword = !showPassword;
+        } else {// 隐藏密码
+            mPasswordClean.setImageResource(R.mipmap.password_nomal);
+            mPasswordEdit.setTransformationMethod(PasswordTransformationMethod.getInstance());
+            showPassword = !showPassword;
+        }
+        needFocusable(mPasswordEdit);
     }
 
     private void setloginbutten(EditText editText, EditText editText1, Button button) {
@@ -220,4 +206,52 @@ public class LoginActivity extends BaseActivity {
     }
 
 
+    @Override
+    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+        setusernameclean();
+        setloginbutten(mUserNameEdit, mPasswordEdit, mButten);
+    }
+
+    @Override
+    public void afterTextChanged(Editable editable) {
+
+    }
+
+    @OnClick(R.id.butten)
+    public void onViewClicked() {
+               /**username : 用户名
+                *password：密码
+                *domain_id ：登录站点id*/
+        showDialog(null);
+        /*String username = "gu";
+        String mobile = "15958121433";*/
+        HashMap<String, String> map1 = new HashMap<>();
+        map1.put("username", mUserNameEdit.getText().toString());
+        map1.put("password", mPasswordEdit.getText().toString());
+        map1.put("domain_id", "1");
+        String key = AesEncryptionUtil.encrypt(JSONObject.toJSONString(map1));
+        LogUtils.e("encrypt:" + key);
+        getNetData(mBBMApiStores.getLogin(key), new ApiCallback<LoginBean>() {
+
+            @Override
+            public void onSuccess(LoginBean model) {
+                disDialog();
+                String message = model.getMessage();
+                showtoast(message);
+
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                disDialog();
+                showtoast(msg);
+
+            }
+        });
+    }
 }
